@@ -12,7 +12,17 @@ const Tabs = (topics) => {
   //   <div class="tab">bootstrap</div>
   //   <div class="tab">technology</div>
   // </div>
-  //
+  //for each topic add it as a new div (assigned variable)
+  const topicsWrap = document.createElement("div");
+  topicsWrap.classList.add("topics");
+
+  
+  topics.forEach(topic => {
+  topic = document.createElement("div")
+  topic.classList.add("tab");
+  topicsWrap.appendChild(topic);
+
+  })
 }
 
 const tabsAppender = (selector) => {
