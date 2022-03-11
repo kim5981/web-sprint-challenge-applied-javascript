@@ -29,7 +29,7 @@ const Header = (title, date, temp) => {
   wrapper.appendChild(hTitle);
   wrapper.appendChild(tempSpan);
 
-  console.log(wrapper);
+  // console.log(wrapper);
 
   return wrapper;
 }
