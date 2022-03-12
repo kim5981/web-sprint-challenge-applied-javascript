@@ -1,11 +1,11 @@
-const Card = (article) => {
+const Card = ( {headline, authorPhoto, authorName} ) => {
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
   // It takes as its only argument an "article" object with `headline`, `authorPhoto` and `authorName` properties.
   // The tags used, the hierarchy of elements and their attributes must match the provided markup exactly!
   // The text inside elements will be set using their `textContent` property (NOT `innerText`).
-  // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
+  // Add a ----->listener<--- for click events so that when a user clicks on a card, the headline of the article is logged to the console.
   //
   // <div class="card">
   //   <div class="headline">{ headline }</div>
@@ -21,8 +21,9 @@ const Card = (article) => {
   const cardWrapper = document.createElement("div");
   cardWrapper.classList.add("card");
 
-  const headline = document.createElement("div");
-  headline.classList.add("headline");
+  const headlineWrapper = document.createElement("div");
+  headlineWrapper.classList.add("headline");
+  headlineWrapper.textContent = headline;
 
   const authorWrap = document.createElement("div");
   authorWrap.classList.add("author");
@@ -31,20 +32,31 @@ const Card = (article) => {
   imgContainer.classList.add("img-container");
 
   const authorPic = document.createElement("img");
-  authorPic.src = article.authorPhoto;
+  authorPic.src = authorPhoto;
 
-  const authorName = document.createElement("span");
-  authorName.textContent = `By ${article.authorName}`
+  const name = document.createElement("span");
+  name.textContent = `By ${authorName}`
 
   // console.log(article.authorName)
 
-  cardWrapper.appendChild(headline);
+  cardWrapper.appendChild(headlineWrapper);
   cardWrapper.appendChild(authorWrap);
   authorWrap.appendChild(imgContainer);
   authorWrap.appendChild(authorPic);
-  cardWrapper.appendChild(authorName);
+  cardWrapper.appendChild(name);
+
+  console.log("this is the author card ---> ", cardWrapper)
+
+
+  cardWrapper.addEventListener("click", evt => {
+    console.log(headline);
+  })
+
+  return cardWrapper
 
 }
+
+Card({ headline: "THIS JUST IN", authorPhoto: "http://www.simpleimageresizer.com/_uploads/photos/b5491434/kindpng_2204295_1_25.png", authorName: "kim" })
 
 const cardAppender = (selector) => {
   // TASK 6
