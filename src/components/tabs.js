@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const Tabs = (topics) => {
   // TASK 3
@@ -16,37 +16,30 @@ const Tabs = (topics) => {
   // </div>
   //for each topic add it as a new div (assigned variable)
 
-//  console.log(topics);
-//create div, add class (NODE)
+  //  console.log(topics);
+  //create div, add class (NODE)
   const topicsWrap = document.createElement("div");
   topicsWrap.classList.add("topics");
 
   //takes in a topic to create one by..
-  function topicMaker (topic) {
+  function topicMaker(topic) {
     // div created + class name (NODE)
-    const topicItem = document.createElement("div")
+    const topicItem = document.createElement("div");
     topicItem.classList.add("tab");
     //it takes the input data and uses it to set the text content
     //since the input data is an array it needs to use that array's index info instead => topic[i]
     topicItem.textContent = topic;
-    return topicItem
+    return topicItem;
   }
   //*topics is an array, for each item in it we will..
-  topics.forEach(topic=> {
+  topics.forEach((topic) => {
     // console.log("topic --> ", topic);
-  const topicElem = topicMaker(topic);
-//then appended to topicsWrap
-  topicsWrap.appendChild(topicElem);
-  })
-
-  console.log("topicsWrap --->", topicsWrap);
-  
-
-  // console.log("this is topicsWrap --->", topicsWrap);
+    const topicElem = topicMaker(topic);
+    //then appended to topicsWrap
+    topicsWrap.appendChild(topicElem);
+  });
   return topicsWrap;
-}
-
-
+};
 
 const tabsAppender = (selector) => {
   // TASK 4
@@ -57,26 +50,20 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
 
-  const entry = document.querySelector(selector)
-  axios.get("http://localhost:5000/api/topics")
-  .then(res => {
-    console.log(res.data.topics)
-    res.data.topics.forEach(topic => {
-      entry.appendChild(Tabs(topic))
+  const entry = document.querySelector(selector);
+  axios
+    .get("http://localhost:5000/api/topics")
+    .then((res) => {
+      const topics = res.data.topics
+        entry.appendChild(Tabs(topics));
     })
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    console.log("aaaarrrrrghhh ")
-  })
-  
-// const tabs = document.querySelector(".container-left  span");
+    .catch((err) => {
+      console.error(err);
+    })
+};
 
-
-}
+tabsAppender(".container-left  span");
 
 
 
-export { Tabs, tabsAppender }
+export { Tabs, tabsAppender };
