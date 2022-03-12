@@ -36,7 +36,7 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 **Steps Required for MVP:**
 
 - [x] Steps 1 and 2 are explained inside the `src/components/header.js` file.
-- [ ] Steps 3 and 4 are explained inside the `src/components/tabs.js` file.
+- [x] Steps 3 and 4 are explained inside the `src/components/tabs.js` file.
 - [ ] Steps 5 and 6 are explained inside the `src/components/card.js` file.
 
 **Important Notes:**
@@ -50,17 +50,22 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 ## Submission format
 
-- [ ] Submit via Codegrade by committing and pushing any new changes to the *main* branch.
-- [ ] Check Codegrade for automated feedback.
-- [ ] Check Codegrade in the days following the Sprint Challenge for reviewer feedback.
-- [ ] Any changes pushed after the deadline will not receive any feedback.
+- [x] Submit via Codegrade by committing and pushing any new changes to the *main* branch.
+- [x] Check Codegrade for automated feedback.
+- [] Check Codegrade in the days following the Sprint Challenge for reviewer feedback.
+- [x] Any changes pushed after the deadline will not receive any feedback.
 
 ## Interview Questions
 
 Demonstrate your understanding of this week's concepts by answering the following questions:
 
 1. What is the DOM?
+Document.Object.Model => an object that represents the webpage as different programs interact with each other (JS, HTML, CSS) 
 2. What is an event?
+A trigger that activates a change on an element in the dom 
 3. What is an event listener?
+a method that uses event handlers to ~listen~ for changes on the dom and makes it easier to control how event reacts to bubbling 
 4. Why would we convert a NodeList into an Array?
+NodeLists are browser API's (not JS API's) so you can't apply JS methods to them (querySelector and getElementsby... are from browser API)
 5. What is a component?
+a function 
