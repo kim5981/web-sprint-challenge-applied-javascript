@@ -1,4 +1,6 @@
-const Card = ( {headline, authorPhoto, authorName} ) => {
+import axios from "axios";
+
+const Card = ({ headline, authorPhoto, authorName }) => {
   // TASK 5
   // ---------------------
   // Implement this function, which should return the markup you see below.
@@ -32,12 +34,10 @@ const Card = ( {headline, authorPhoto, authorName} ) => {
   imgContainer.classList.add("img-container");
 
   const authorPic = document.createElement("img");
-  authorPic.src = authorPhoto;
+  authorPic.src = "authorPhoto";
 
   const name = document.createElement("span");
-  name.textContent = `By ${authorName}`
-
-  // console.log(article.authorName)
+  name.textContent = `By ${authorName}`;
 
   cardWrapper.appendChild(headlineWrapper);
   cardWrapper.appendChild(authorWrap);
@@ -45,18 +45,20 @@ const Card = ( {headline, authorPhoto, authorName} ) => {
   authorWrap.appendChild(authorPic);
   cardWrapper.appendChild(name);
 
-  console.log("this is the author card ---> ", cardWrapper)
 
-
-  cardWrapper.addEventListener("click", evt => {
+  cardWrapper.addEventListener("click", () => {
     console.log(headline);
-  })
+  });
 
-  return cardWrapper
+  return cardWrapper;
+};
 
-}
-
-Card({ headline: "THIS JUST IN", authorPhoto: "http://www.simpleimageresizer.com/_uploads/photos/b5491434/kindpng_2204295_1_25.png", authorName: "kim" })
+// Card({
+//   headline: "THIS JUST IN",
+//   authorPhoto:
+//     "http://www.simpleimageresizer.com/_uploads/photos/b5491434/kindpng_2204295_1_25.png",
+//   authorName: "kim",
+// });
 
 const cardAppender = (selector) => {
   // TASK 6
@@ -67,6 +69,34 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
-}
 
-export { Card, cardAppender }
+
+ 
+
+  const theSelector = document.querySelector(selector);
+
+  
+
+  axios
+    .get("http://localhost:5000/api/articles")
+    .then((res) => {
+      console.log(res.data.articles);
+      Object.values(res.data.articles).forEach((article) => {
+        Object.values(article).forEach((obj) => {
+          Object.values(obj).forEach((  headline, authorPhoto, authorName  ) => {
+            const authorCard = Card({
+              headline: headline,
+              authorPhoto: authorPhoto,
+              authorName: authorName,
+            });
+            theSelector.appendChild(authorCard);
+          });
+        });
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};
+
+export { Card, cardAppender };
