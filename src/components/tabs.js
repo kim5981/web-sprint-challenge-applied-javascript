@@ -62,7 +62,7 @@ const tabsAppender = (selector) => {
     })
 };
 
-tabsAppender(".container-left  span");
+// tabsAppender(".container-left  span");
 
 
 
