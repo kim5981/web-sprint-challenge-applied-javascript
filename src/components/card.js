@@ -34,7 +34,7 @@ const Card = ({ headline, authorPhoto, authorName }) => {
   imgContainer.classList.add("img-container");
 
   const authorPic = document.createElement("img");
-  authorPic.src = "authorPhoto";
+  authorPic.src = authorPhoto;
 
   const name = document.createElement("span");
   name.textContent = `By ${authorName}`;
@@ -44,7 +44,6 @@ const Card = ({ headline, authorPhoto, authorName }) => {
   authorWrap.appendChild(imgContainer);
   authorWrap.appendChild(authorPic);
   cardWrapper.appendChild(name);
-
 
   cardWrapper.addEventListener("click", () => {
     console.log(headline);
@@ -60,6 +59,15 @@ const Card = ({ headline, authorPhoto, authorName }) => {
 //   authorName: "kim",
 // });
 
+const sampleData = {
+  headline: "THIS JUST IN",
+  authorPhoto:
+    "http://www.simpleimageresizer.com/_uploads/photos/b5491434/kindpng_2204295_1_25.png",
+  authorName: "kim",
+  example: "this should fail",
+  id: "this should definitely fail!!",
+};
+
 const cardAppender = (selector) => {
   // TASK 6
   // ---------------------
@@ -70,31 +78,29 @@ const cardAppender = (selector) => {
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
 
-
- 
-
   const theSelector = document.querySelector(selector);
-
-  
 
   axios
     .get("http://localhost:5000/api/articles")
     .then((res) => {
       console.log(res.data.articles);
-      Object.values(res.data.articles).forEach((article) => {
-        Object.values(article).forEach((obj) => {
-          Object.values(obj).forEach((  headline, authorPhoto, authorName  ) => {
-            const authorCard = Card({
-              headline: headline,
-              authorPhoto: authorPhoto,
-              authorName: authorName,
-            });
-            theSelector.appendChild(authorCard);
+      //converting obj of data to array for easy sorting
+      const articles2Array = Object.values(res.data.articles);
+      //loop through articles w/ forEach and go further down the rabbit hole (for e/ article (also an array) ...)
+      articles2Array.forEach((article) => {
+        //loop through the article too and take a look at e/ object
+        article.forEach((obj) => {
+          const { headline, authorName, authorPhoto } = obj;
+          const authorCard = Card({
+            headline: headline,
+            authorPhoto: authorPhoto,
+            authorName: authorName,
           });
+          theSelector.appendChild(authorCard);
         });
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
     });
 };
