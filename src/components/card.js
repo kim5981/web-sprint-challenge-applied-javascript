@@ -42,8 +42,8 @@ const Card = ({ headline, authorPhoto, authorName }) => {
   cardWrapper.appendChild(headlineWrapper);
   cardWrapper.appendChild(authorWrap);
   authorWrap.appendChild(imgContainer);
-  authorWrap.appendChild(authorPic);
-  cardWrapper.appendChild(name);
+  imgContainer.appendChild(authorPic);
+  authorWrap.appendChild(name);
 
   cardWrapper.addEventListener("click", () => {
     console.log(headline);
@@ -59,14 +59,6 @@ const Card = ({ headline, authorPhoto, authorName }) => {
 //   authorName: "kim",
 // });
 
-const sampleData = {
-  headline: "THIS JUST IN",
-  authorPhoto:
-    "http://www.simpleimageresizer.com/_uploads/photos/b5491434/kindpng_2204295_1_25.png",
-  authorName: "kim",
-  example: "this should fail",
-  id: "this should definitely fail!!",
-};
 
 const cardAppender = (selector) => {
   // TASK 6
