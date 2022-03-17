@@ -68,4 +68,4 @@ a method that uses event handlers to ~listen~ for changes on the dom and makes i
 4. Why would we convert a NodeList into an Array?
 NodeLists are browser API's (not JS API's) so you can't apply JS methods to them (querySelector and getElementsby... are from browser API)
 5. What is a component?
-a function 
+A set of instructions to be reused by different parts of a website/app to help add better functionality. Essentially it acts like a function
